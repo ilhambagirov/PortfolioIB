@@ -1,0 +1,38 @@
+﻿@model Project
+@{
+    ViewData["Title"] = "Detail";
+}
+
+
+
+<div class="tab-content">
+    <div class="inside-sec blog">
+        <!-- BIO AND SKILLS -->
+        <h5 class="tittle">BLOG POST</h5>
+
+        <!-- Blog -->
+        <article class="blog-post width-100 padding-25">
+            <div class="post-img">
+                <img src="~/uploads/images/portfolio/5/@Model.ImagePath" alt="">
+                <span class="date-in">@Model.CreatedDate</span>
+            </div>
+            <!-- BLOG DETAIL -->
+            <h4 class="fon-normal">@Model.ProjectName</h4>
+            <a href=" @Model.Link" target="_blank">
+               Github Link
+            </a>
+            <span class="post-bt">by <span class="text-color-primary">Ilham</span></span>
+            <ul class="post-info">
+                @*<li> <i class="fa fa-comments-o"></i>97 </li>
+                <li> <i class="fa fa-eye"></i>565 </li>*@
+                <li> <i class="fa fa-bookmark-o"></i>@Model.ProjectType </li>
+                <li>  </li>
+            </ul>
+            <p>
+                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.<br>
+                <br>
+                There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable.
+            </p>
+        </article>
+    </div>
+</div>
