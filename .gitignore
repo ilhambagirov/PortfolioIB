@@ -109,3 +109,7 @@ dist
 obj/*
 bin/*
 /Portfolio/Portfolio.WebUI/bin/Debug/net5.0
+/Portfolio/Portfolio.Application/bin/Debug/net5.0
+/Portfolio/Portfolio.Application/obj
+/Portfolio/Portfolio.Domain/bin/Debug/net5.0
+/Portfolio/Portfolio.Domain/obj

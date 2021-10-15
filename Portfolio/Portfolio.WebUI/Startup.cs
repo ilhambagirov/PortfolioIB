@@ -1,13 +1,14 @@
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Portfolio.Domain.Models.DataContext;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Portfolio.WebUI
 {
@@ -25,10 +26,13 @@ namespace Portfolio.WebUI
             services.AddControllersWithViews();
             services.AddRouting(cfg => cfg.LowercaseUrls = true);
 
-           /* services.AddDbContext<RiodeDBContext>(cfg =>
+            services.AddDbContext<PortfolioDbContext>(cfg =>
             {
-                cfg.UseSqlServer(configuration.GetConnectionString("cString"));
-            });*/
+                cfg.UseSqlServer(Configuration.GetConnectionString("cString"));
+            });
+            services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+            var asmbls = AppDomain.CurrentDomain.GetAssemblies().Where(a => a.FullName.StartsWith("Portfolio")).ToArray();
+            services.AddMediatR(asmbls);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
