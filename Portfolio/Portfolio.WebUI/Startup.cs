@@ -30,6 +30,7 @@ namespace Portfolio.WebUI
             {
                 cfg.UseSqlServer(Configuration.GetConnectionString("cString"));
             });
+
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             var asmbls = AppDomain.CurrentDomain.GetAssemblies().Where(a => a.FullName.StartsWith("Portfolio")).ToArray();
             services.AddMediatR(asmbls);

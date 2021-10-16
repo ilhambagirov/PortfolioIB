@@ -13,6 +13,7 @@ namespace Portfolio.Domain.Models.DataContext
 
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Project> Projects { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
 
     }
 }

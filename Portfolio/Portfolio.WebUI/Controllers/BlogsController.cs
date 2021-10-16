@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Portfolio.Application.Modules.BlogModules.BlogUser;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +10,23 @@ namespace Portfolio.WebUI.Controllers
 {
     public class BlogsController : Controller
     {
-       
-        public IActionResult Index()
+
+        readonly IMediator mediator;
+        public BlogsController(IMediator mediator)
         {
-            return View();
+            this.mediator = mediator;
         }
-        public IActionResult Details()
+
+        public async Task<IActionResult> Index(BlogPagedQuery query)
         {
-            return View();
+            var response = await mediator.Send(query);
+
+            return View(response);
+        }
+        public async Task<IActionResult> Details(BlogSingleQuery query)
+        {
+            var response = await mediator.Send(query);
+            return View(response);
         }
     }
 }

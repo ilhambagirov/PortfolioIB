@@ -1,4 +1,4 @@
-﻿
+﻿@model Blog
 @{
     ViewData["Title"] = "Details";
 }
@@ -11,49 +11,24 @@
         <!-- Blog -->
         <article class="blog-post width-100 padding-25">
             <div class="post-img">
-                <img src="~/uploads/images/img-1.jpg" alt="">
-                <span class="date-in">27 JAN</span>
+                <img src="~/uploads/images/@Model.ImagePath" alt="">
+                <span class="date-in">@Model.CreatedDate.ToString("dd MMM")</span>
             </div>
 
             <!-- BLOG DETAIL -->
-            <h4 class="font-normal">Faster Response</h4>
-            <span class="post-bt">by <span class="text-color-primary">Admin</span></span>
+            <h4 class="font-normal">@Model.BlogName</h4>
+            <span class="post-bt">by <span class="text-color-primary">Ilham</span></span>
             <ul class="post-info">
-                <li> <i class="fa fa-comments-o"></i>97 </li>
-                <li> <i class="fa fa-eye"></i>565 </li>
-                <li> <i class="fa fa-bookmark-o"></i>Photography </li>
+                @*<li> <i class="fa fa-comments-o"></i>97 </li>
+                    <li> <i class="fa fa-eye"></i>565 </li>*@
+                <li> <i class="fa fa-bookmark-o"></i>@Model.BlogType </li>
                 <li>  </li>
             </ul>
-            <p>
-                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.<br>
-                <br>
-                There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable.
-            </p>
-            <blockquote class="margin-top-30">“Sensibus oportere signiferumque id mea. At usu lucilius phaedrum, vix oratio epicurei ne. Eripuit conceptam sea cu, ius minim delectus euripidis cu. Probo nonumy gubergren id nec. In est probo ridens, his laoreet euripidis et.”</blockquote>
-            <h5 class="margin-top-30 margin-bottom-0">1914 translation by H. Rackham</h5>
-            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures,</p>
-            <div class="row">
-                <div class="col-md-6">
-                    <p>
-                        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, literature, discovered the undoubtable source. <br>
-                        <br>
-                        There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words
-                    </p>
-                </div>
-                <div class="col-md-6"><img class="img-responsive margin-top-10" src="~/uploads/imagespost-img.jpg" alt=""></div>
-            </div>
-            <p>
-                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.<br>
-                <br>
-                There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable.
-            </p>
+            @Html.Raw(Model.Description)
             <div class="auther-name text-center margin-top-50">
                 <h6 class="font-12px margin-top-20 margin-bottom-10">WHITE SHADOW WALKER</h6>
                 <span class="font-16px font-crimson font-italic">Writer/Personal blog</span>
             </div>
-
-
-
             <div class="next-prev">
                 <div class="row">
                     <div class="col-md-6 text-left"><a href="#." class="font-16px font-crimson text-uppercase"><i class="fa fa-long-arrow-left margin-right-15"></i> PREVIOUS Article</a></div>
