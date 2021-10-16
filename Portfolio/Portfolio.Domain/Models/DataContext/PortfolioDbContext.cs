@@ -14,6 +14,10 @@ namespace Portfolio.Domain.Models.DataContext
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Experience> Experiences { get; set; }
+        public DbSet<Education> Educationss { get; set; }
+        public DbSet<Bio> Bio { get; set; }
+        public DbSet<Skills> Skills { get; set; }
 
     }
 }

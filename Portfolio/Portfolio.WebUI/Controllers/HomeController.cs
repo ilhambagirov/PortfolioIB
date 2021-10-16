@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Portfolio.Application.Modules.ContactModules.ContactUser;
-using Portfolio.Domain.Models.Entities;
+using Portfolio.Application.Modules.ResumeModules.ResumeUser;
 using System.Threading.Tasks;
 
 namespace Portfolio.WebUI.Controllers
@@ -17,9 +17,10 @@ namespace Portfolio.WebUI.Controllers
         {
             return View();
         }
-        public IActionResult Resume()
+        public async Task<IActionResult> Resume(ResumeList query)
         {
-            return View();
+            var response = await mediator.Send(query);
+            return View(response);
         }
         public IActionResult Portfolio()
         {
