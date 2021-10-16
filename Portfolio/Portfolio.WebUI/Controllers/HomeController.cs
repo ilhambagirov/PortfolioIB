@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Portfolio.Application.Modules.ContactModules.ContactUser;
+using Portfolio.Application.Modules.IndexModules.IndexUser;
 using Portfolio.Application.Modules.ResumeModules.ResumeUser;
 using System.Threading.Tasks;
 
@@ -13,9 +14,10 @@ namespace Portfolio.WebUI.Controllers
         {
             this.mediator = mediator;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index(IndexList query)
         {
-            return View();
+            var response = await mediator.Send(query);
+            return View(response);
         }
         public async Task<IActionResult> Resume(ResumeList query)
         {
