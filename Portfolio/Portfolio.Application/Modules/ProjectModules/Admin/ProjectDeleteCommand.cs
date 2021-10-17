@@ -6,12 +6,12 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Riode.Application.Modules.BlogModules.Admin
+namespace Riode.Application.Modules.ProjectModules.Admin
 {
-    public class BlogDeleteCommand : IRequest<CommandJsonResponse>
+    public class ProjectDeleteCommand : IRequest<CommandJsonResponse>
     {
         public int? Id { get; set; }
-        public class BlogDeleteCommandHandler : IRequestHandler<BlogDeleteCommand, CommandJsonResponse>
+        public class BlogDeleteCommandHandler : IRequestHandler<ProjectDeleteCommand, CommandJsonResponse>
         {
             readonly PortfolioDbContext db;
             public BlogDeleteCommandHandler(PortfolioDbContext db)
@@ -19,7 +19,7 @@ namespace Riode.Application.Modules.BlogModules.Admin
                 this.db = db;
             }
 
-            public async Task<CommandJsonResponse> Handle(BlogDeleteCommand request, CancellationToken cancellationToken)
+            public async Task<CommandJsonResponse> Handle(ProjectDeleteCommand request, CancellationToken cancellationToken)
             {
 
                 var response = new CommandJsonResponse();
@@ -30,7 +30,7 @@ namespace Riode.Application.Modules.BlogModules.Admin
                     goto end;
                 }
 
-                var entity = await db.Blogs.FirstOrDefaultAsync(b => b.Id == request.Id && b.DeleteByUserId == null);
+                var entity = await db.Projects.FirstOrDefaultAsync(b => b.Id == request.Id && b.DeleteByUserId == null);
 
                 if (entity == null)
                 {

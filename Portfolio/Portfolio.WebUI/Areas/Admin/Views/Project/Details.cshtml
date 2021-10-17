@@ -1,0 +1,68 @@
+﻿@model Project
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="container mb-5">
+    <h1>Details</h1>
+    <h4>FAQ</h4>
+    <hr />
+    <div class="form-group row d-flex">
+        <label class="col-sm-2">
+            Blog Image
+        </label>
+        <div class="col-sm-10" style="max-width:1090px">
+            <img style="width:inherit;border-radius:5px" src="~/uploads/images/@Model.ImagePath" />
+        </div>
+    </div>
+    <div class="form-group row d-flex">
+        <label class="col-sm-2">
+            Blog Name
+        </label>
+        <p class="form-control col-sm-10">
+            @Model.ProjectName
+        </p>
+    </div>
+    <div class="form-group row d-flex">
+        <label class="col-sm-2">
+            Blog Type
+        </label>
+        <p class="textarea col-sm-10">
+            @Model.ProjectType
+        </p>
+    </div>
+    <div class="form-group row d-flex">
+        <label class="col-sm-2">
+            Link
+        </label>
+        <p class="textarea col-sm-10">
+            @Model.Link
+        </p>
+    </div>
+    <div class="form-group row d-flex description">
+        <label class="col-sm-2 description">
+            Description
+        </label>
+        @Html.Raw(Model.Description)
+    </div>
+    <div class="form-group row d-flex">
+        <label class="col-sm-2">
+            Created Date
+        </label>
+        <p class="form-control col-sm-10">
+            @Model.CreatedDate
+        </p>
+    </div>
+    <div>
+        <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+        <a class="btn btn-primary" asp-action="Index">Back to List</a>
+    </div>
+</div>
+
+@section addjs{
+    <script>
+        $(document).ready(function () {
+            console.log($('.description p'))
+            $('.description p').addClass('textarea col-sm-10')
+        })
+    </script>
+}

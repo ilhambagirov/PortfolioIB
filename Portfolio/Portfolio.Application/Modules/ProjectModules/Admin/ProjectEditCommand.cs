@@ -9,11 +9,11 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Portfolio.Application.Modules.BlogModules.Admin
+namespace Portfolio.Application.Modules.ProjectModules.Admin
 {
-    public class BlogEditCommand : BlogViewModel, IRequest<int>
+    public class ProjectEditCommand : ProjectViewModel, IRequest<int>
     {
-        public class BlogEditCommandHandler : IRequestHandler<BlogEditCommand, int>
+        public class BlogEditCommandHandler : IRequestHandler<ProjectEditCommand, int>
         {
             readonly PortfolioDbContext db;
             readonly IActionContextAccessor ctx;
@@ -24,7 +24,7 @@ namespace Portfolio.Application.Modules.BlogModules.Admin
                 this.ctx = ctx;
                 this.env = env;
             }
-            public async Task<int> Handle(BlogEditCommand request, CancellationToken cancellationToken)
+            public async Task<int> Handle(ProjectEditCommand request, CancellationToken cancellationToken)
             {
 
                 if (request.Id == null || request.Id < 0)
@@ -37,7 +37,7 @@ namespace Portfolio.Application.Modules.BlogModules.Admin
                     ctx.ActionContext.ModelState.AddModelError("file", "Not Chosen");
                 }
 
-                var entity = await db.Blogs.FirstOrDefaultAsync(b => b.Id == request.Id && b.DeleteByUserId == null);
+                var entity = await db.Projects.FirstOrDefaultAsync(b => b.Id == request.Id && b.DeleteByUserId == null);
 
                 if (entity == null)
                 {
@@ -46,10 +46,10 @@ namespace Portfolio.Application.Modules.BlogModules.Admin
 
                 if (ctx.IsModelStateValid())
                 {
-                    entity.BlogName = request.BlogName;
-                    entity.BlogType = request.BlogType;
-                    entity.ShortDescription = request.ShortDescription;
+                    entity.ProjectName = request.ProjectName;
+                    entity.ProjectType = request.ProjectType;
                     entity.Description = request.Description;
+                    entity.Link = request.Link;
 
                     if (request.File != null)
                     {

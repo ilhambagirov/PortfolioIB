@@ -10,17 +10,17 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Portfolio.Application.Modules.BlogModules.Admin
+namespace Portfolio.Application.Modules.ProjectModules.Admin
 {
-    public class BlogCreateCommand : IRequest<int>
+    public class ProjectCreateCommand : IRequest<int>
     {
 
-        public string BlogName { get; set; }
-        public string BlogType { get; set; }
+        public string ProjectName { get; set; }
+        public string ProjectType { get; set; }
         public string Description { get; set; }
-        public string ShortDescription { get; set; }
+        public string Link { get; set; }
         public IFormFile File { get; set; }
-        public class BlogCreateCommandHandler : IRequestHandler<BlogCreateCommand, int>
+        public class BlogCreateCommandHandler : IRequestHandler<ProjectCreateCommand, int>
         {
 
             readonly PortfolioDbContext db;
@@ -32,7 +32,7 @@ namespace Portfolio.Application.Modules.BlogModules.Admin
                 this.ctx = ctx;
                 this.env = env;
             }
-            public async Task<int> Handle(BlogCreateCommand request, CancellationToken cancellationToken)
+            public async Task<int> Handle(ProjectCreateCommand request, CancellationToken cancellationToken)
             {
                 if (request.File == null)
                 {
@@ -41,11 +41,11 @@ namespace Portfolio.Application.Modules.BlogModules.Admin
 
                 if (ctx.IsModelStateValid())
                 {
-                    var blog = new Blog();
-                    blog.BlogName = request.BlogName;
+                    var blog = new Project();
+                    blog.ProjectName = request.ProjectName;
                     blog.Description = request.Description;
-                    blog.ShortDescription = request.ShortDescription;
-                    blog.BlogType = request.BlogType;
+                    blog.ProjectType = request.ProjectType;
+                    blog.Link = request.Link;
                     var extension = Path.GetExtension(request.File.FileName);
                     blog.ImagePath = $"{Guid.NewGuid()}{extension}";
                     var physicalAddress = Path.Combine(env.ContentRootPath,

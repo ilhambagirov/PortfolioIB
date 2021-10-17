@@ -1,8 +1,9 @@
-﻿@model Blog
+﻿@model ProjectViewModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
 }
+
 <div class="col-lg-12">
     <div class="white_card card_height_100 mb_30">
         <div class="white_card_header">
@@ -14,26 +15,32 @@
         </div>
         <div class="white_card_body">
             <div class="card-body">
-                <form asp-action="Create" enctype="multipart/form-data">
+                <form asp-action="Edit" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-row">
                         <div class="form-group col-12">
-                            <label asp-for="BlogName" class="control-label">Title</label>
-                            <input asp-for="BlogName" class="form-control" placeholder="Title">
-                            <span asp-validation-for="BlogName" class="text-danger"></span>
+                            <label asp-for="ProjectName" class="control-label">Title</label>
+                            <input asp-for="ProjectName" class="form-control" placeholder="Title">
+                            <span asp-validation-for="ProjectName" class="text-danger"></span>
                         </div>
                         <div class="form-group col-12">
-                            <label asp-for="BlogType" class="control-label">Title</label>
-                            <input asp-for="BlogType" class="form-control" placeholder="Title">
-                            <span asp-validation-for="BlogType" class="text-danger"></span>
+                            <label asp-for="ProjectType" class="control-label">Title</label>
+                            <input asp-for="ProjectType" class="form-control" placeholder="Title">
+                            <span asp-validation-for="ProjectType" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-12">
+                            <label asp-for="Link" class="control-label">Title</label>
+                            <input asp-for="Link" class="form-control" placeholder="Title">
+                            <span asp-validation-for="Link" class="text-danger"></span>
                         </div>
                         <div class="form-group col-12">
                             <label class="control-label">
                                 Şəkil
                             </label>
                             <label class="image-input"
+                                   data-imgurl="/uploads/images/@Model.fileTemp"
                                    for="file">
-                                <input type="hidden" name="fileTemp" value="">
+                                <input type="hidden" name="fileTemp" value="@Model.fileTemp">
                                 <span>×</span>
                             </label>
                             <input name="file"
@@ -42,20 +49,15 @@
                                    accept="image/x-png,image/gif,image/jpeg">
                         </div>
                         <div class="form-group col-12">
-                            <label asp-for="ShortDescription" class="control-label">Description</label>
-                            <input asp-for="ShortDescription" class="form-control" placeholder="Description"></input>
-                            <span asp-validation-for="ShortDescription" class="text-danger"></span>
-                        </div>
-                        <div class="form-group col-12">
-                            <label asp-for="Description" class="control-label">Category</label>
-                            <textarea asp-for="Description" class="form-control" asp-items="ViewBag.CategoryId"></textarea>
+                            <label asp-for="Description" class="control-label">Description</label>
+                            <textarea asp-for="Description" class="form-control" placeholder="Description"></textarea>
                             <span asp-validation-for="Description" class="text-danger"></span>
                         </div>
                     </div>
-
                     <div class="form-group">
-                        <input type="submit" value="Create" class="btn btn-primary" />
-                        <a asp-controller="blog" asp-action="Index" class="btn btn-primary">Back to List</a>
+                        <input asp-for="@Model.Id" type="hidden" />
+                        <input type="submit" value="Edit" class="btn btn-primary" />
+                        <a asp-controller="project" asp-action="Index" class="btn btn-primary">Back to List</a>
                     </div>
                 </form>
             </div>
@@ -80,4 +82,5 @@
         })
     </script>
 }
+
 
