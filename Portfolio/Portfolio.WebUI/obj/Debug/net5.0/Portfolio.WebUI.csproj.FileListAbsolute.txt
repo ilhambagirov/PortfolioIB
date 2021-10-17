@@ -157,3 +157,6 @@ C:\Users\ACER\OneDrive\Desktop\Portfolio Project\PortfolioIB\Portfolio\Portfolio
 C:\Users\ACER\OneDrive\Desktop\Portfolio Project\PortfolioIB\Portfolio\Portfolio.WebUI\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
 C:\Users\ACER\OneDrive\Desktop\Portfolio Project\PortfolioIB\Portfolio\Portfolio.WebUI\obj\Debug\net5.0\Razor\Views\Project\Detail.cshtml.g.cs
 C:\Users\ACER\OneDrive\Desktop\Portfolio Project\PortfolioIB\Portfolio\Portfolio.WebUI\obj\Debug\net5.0\Razor\Views\Project\Index.cshtml.g.cs
+C:\Users\ACER\OneDrive\Desktop\Portfolio Project\PortfolioIB\Portfolio\Portfolio.WebUI\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\ACER\OneDrive\Desktop\Portfolio Project\PortfolioIB\Portfolio\Portfolio.WebUI\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+C:\Users\ACER\OneDrive\Desktop\Portfolio Project\PortfolioIB\Portfolio\Portfolio.WebUI\obj\Debug\net5.0\Razor\Views\Shared\Components\PersonelDetails\Default.cshtml.g.cs

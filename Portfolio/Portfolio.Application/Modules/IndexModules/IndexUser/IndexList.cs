@@ -23,9 +23,10 @@ namespace Portfolio.Application.Modules.IndexModules.IndexUser
 
                 vm.Skills = await db.Skills.Where(b => b.DeleteByUserId == null && b.DeleteDate == null)
                      .ToListAsync(cancellationToken);
-
+                vm.Services = await db.Services.Where(b => b.DeleteByUserId == null && b.DeleteDate == null).Include(i => i.Icons)
+                     .ToListAsync(cancellationToken);
+                vm.PersonalDetails = await db.PersonalDetails.FirstOrDefaultAsync(b => b.DeleteByUserId == null && b.DeleteDate == null);
                 return vm;
-
             }
         }
     }

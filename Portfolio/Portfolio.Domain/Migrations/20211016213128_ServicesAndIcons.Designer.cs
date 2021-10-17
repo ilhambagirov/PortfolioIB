@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Portfolio.Domain.Models.DataContext;
 
 namespace Portfolio.Domain.Migrations
 {
     [DbContext(typeof(PortfolioDbContext))]
-    partial class PortfolioDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211016213128_ServicesAndIcons")]
+    partial class ServicesAndIcons
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -87,43 +89,6 @@ namespace Portfolio.Domain.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Blogs");
-                });
-
-            modelBuilder.Entity("Portfolio.Domain.Models.Entities.BlogComment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("BlogId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Comment")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("CreatedByUserId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("DeleteByUserId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DeleteDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("ParentId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BlogId");
-
-                    b.HasIndex("ParentId");
-
-                    b.ToTable("BlogComments");
                 });
 
             modelBuilder.Entity("Portfolio.Domain.Models.Entities.Contact", b =>
@@ -294,66 +259,6 @@ namespace Portfolio.Domain.Migrations
                     b.ToTable("Icons");
                 });
 
-            modelBuilder.Entity("Portfolio.Domain.Models.Entities.PersonalDetails", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("About")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Age")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CareerLevel")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("CreatedByUserId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Degree")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("DeleteByUserId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("DeleteDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Experience")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Fax")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Location")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Occupation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Website")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PersonalDetails");
-                });
-
             modelBuilder.Entity("Portfolio.Domain.Models.Entities.Project", b =>
                 {
                     b.Property<int>("Id")
@@ -466,23 +371,6 @@ namespace Portfolio.Domain.Migrations
                     b.ToTable("Skills");
                 });
 
-            modelBuilder.Entity("Portfolio.Domain.Models.Entities.BlogComment", b =>
-                {
-                    b.HasOne("Portfolio.Domain.Models.Entities.Blog", "Blog")
-                        .WithMany()
-                        .HasForeignKey("BlogId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Portfolio.Domain.Models.Entities.BlogComment", "Parent")
-                        .WithMany("Children")
-                        .HasForeignKey("ParentId");
-
-                    b.Navigation("Blog");
-
-                    b.Navigation("Parent");
-                });
-
             modelBuilder.Entity("Portfolio.Domain.Models.Entities.Icon", b =>
                 {
                     b.HasOne("Portfolio.Domain.Models.Entities.Service", "Service")
@@ -492,11 +380,6 @@ namespace Portfolio.Domain.Migrations
                         .IsRequired();
 
                     b.Navigation("Service");
-                });
-
-            modelBuilder.Entity("Portfolio.Domain.Models.Entities.BlogComment", b =>
-                {
-                    b.Navigation("Children");
                 });
 
             modelBuilder.Entity("Portfolio.Domain.Models.Entities.Service", b =>

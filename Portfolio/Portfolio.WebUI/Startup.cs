@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Portfolio.Application.Modules.IndexModules.IndexUser;
 using Portfolio.Domain.Models.DataContext;
 using System;
 using System.Linq;
@@ -30,6 +31,7 @@ namespace Portfolio.WebUI
             {
                 cfg.UseSqlServer(Configuration.GetConnectionString("cString"));
             });
+            services.AddTransient<IndexList>();
 
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             var asmbls = AppDomain.CurrentDomain.GetAssemblies().Where(a => a.FullName.StartsWith("Portfolio")).ToArray();

@@ -1,0 +1,101 @@
+﻿@model IndexViewModel
+@{
+    ViewData["Title"] = "Default";
+}
+
+<div class="col-md-4">
+    <div class="side-bar">
+        <!-- Professional Details -->
+        <h5 class="tittle">Professional Details</h5>
+        <img src="~/uploads/images/avatar.jpg" class="img-responsive" alt="">
+        <ul class="personal-info">
+            <li>
+                <p> <span> Name</span> @Model.PersonalDetails.Name</p>
+            </li>
+            <li>
+                <p> <span> Age</span> @Model.PersonalDetails.Age</p>
+            </li>
+            <li>
+                <p> <span> Location</span>@Model.PersonalDetails.Location</p>
+            </li>
+            <li>
+                <p> <span> Experience</span> @Model.PersonalDetails.Experience</p>
+            </li>
+            <li>
+                <p> <span> Degree</span>@Model.PersonalDetails.Degree </p>
+            </li>
+            <li>
+                <p> <span> Career Level</span>@Model.PersonalDetails.CareerLevel </p>
+            </li>
+            <li>
+                <p> <span> Phone</span>@Model.PersonalDetails.Phone </p>
+            </li>
+            <li>
+                <p> <span> FAX</span>@Model.PersonalDetails.Fax </p>
+            </li>
+            <li>
+                <p> <span> E-mail</span> <a href="#.">@Model.PersonalDetails.Email</a> </p>
+            </li>
+            <li>
+                <p> <span> Website</span><a href="#."> @Model.PersonalDetails.Website </a></p>
+            </li>
+        </ul>
+
+        <!-- Attachments -->
+        <h5 class="tittle">Attachments</h5>
+        <div class="attach bor-btm padding-25">
+            <ul>
+                <li>
+                    <p><img src="~/uploads/images/pdf-icon.jpg" alt=""> Curriculum-Vitae.pdf <a href="#."><i class="fa fa-cloud-download"></i></a> <a href="#."><i class="fa fa-eye"></i></a></p>
+                </li>
+                <li>
+                    <p><img src="~/uploads/images/word-icon.jpg" alt=""> COE.docx <a href="#."><i class="fa fa-cloud-download"></i></a> <a href="#."><i class="fa fa-eye"></i></a></p>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Social Profiles -->
+        <h5 class="tittle">Social Profiles</h5>
+        <div class="social-icon bor-btm padding-25">
+            <ul>
+                <li> <a href="#."> <i class="fa fa-facebook"></i></a> </li>
+                <li> <a href="#."> <i class="fa fa-google"></i></a> </li>
+                <li> <a href="#."> <i class="fa fa-twitter"></i></a> </li>
+                <li> <a href="#."> <i class="fa fa-linkedin"></i></a> </li>
+                <li> <a href="#."> <i class="fa fa-skype"></i></a> </li>
+            </ul>
+        </div>
+
+        <!-- Contact Me -->
+        <h5 class="tittle">Contact Me</h5>
+        <div class="contact padding-25">
+            <!-- Success Msg -->
+            <div id="contact_message" class="success-msg"> <i class="fa fa-paper-plane-o"></i>Thank You. Your Message has been Submitted</div>
+
+            <!-- FORM -->
+            <form role="form" id="contact_form" class="contact-form" method="post" onSubmit="return false">
+                <ul class="row">
+                    <li class="col-sm-12">
+                        <label>
+                            <input type="text" class="form-control" name="email" id="email" placeholder="Email">
+                        </label>
+                    </li>
+                    <li class="col-sm-12">
+                        <label>
+                            <input type="text" class="form-control" name="company" id="company" placeholder="Subject">
+                        </label>
+                    </li>
+                    <li class="col-sm-12">
+                        <label>
+                            <textarea class="form-control" name="message" id="message" rows="5" placeholder="Message"></textarea>
+                        </label>
+                    </li>
+                    <li class="col-sm-12">
+                        <button type="submit" value="submit" id="btn_submit" onClick="proceed();">Send Message</button>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+</div>
+
