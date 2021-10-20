@@ -172,3 +172,7 @@ C:\Users\ACER\OneDrive\Desktop\Portfolio Project\PortfolioIB\Portfolio\Portfolio
 C:\Users\ACER\OneDrive\Desktop\Portfolio Project\PortfolioIB\Portfolio\Portfolio.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Project\Details.cshtml.g.cs
 C:\Users\ACER\OneDrive\Desktop\Portfolio Project\PortfolioIB\Portfolio\Portfolio.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Project\Create.cshtml.g.cs
 C:\Users\ACER\OneDrive\Desktop\Portfolio Project\PortfolioIB\Portfolio\Portfolio.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Project\Edit.cshtml.g.cs
+C:\Users\ACER\OneDrive\Desktop\Portfolio Project\PortfolioIB\Portfolio\Portfolio.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Experience\Index.cshtml.g.cs
+C:\Users\ACER\OneDrive\Desktop\Portfolio Project\PortfolioIB\Portfolio\Portfolio.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Experience\Create.cshtml.g.cs
+C:\Users\ACER\OneDrive\Desktop\Portfolio Project\PortfolioIB\Portfolio\Portfolio.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Experience\Details.cshtml.g.cs
+C:\Users\ACER\OneDrive\Desktop\Portfolio Project\PortfolioIB\Portfolio\Portfolio.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Experience\Edit.cshtml.g.cs

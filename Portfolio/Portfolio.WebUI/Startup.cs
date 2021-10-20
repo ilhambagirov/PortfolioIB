@@ -63,7 +63,7 @@ namespace Portfolio.WebUI
                 pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}"
         );
                 endpoints.MapControllerRoute("default", "{controller=home}/{action=index}/{id?}");
-              
+
             });
         }
     }

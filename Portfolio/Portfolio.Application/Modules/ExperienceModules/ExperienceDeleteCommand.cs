@@ -8,18 +8,18 @@ using System.Threading.Tasks;
 
 namespace Riode.Application.Modules.ProjectModules.Admin
 {
-    public class ProjectDeleteCommand : IRequest<CommandJsonResponse>
+    public class ExperienceDeleteCommand : IRequest<CommandJsonResponse>
     {
         public int? Id { get; set; }
-        public class ProjectDeleteCommandHandler : IRequestHandler<ProjectDeleteCommand, CommandJsonResponse>
+        public class ExperienceDeleteCommandHandler : IRequestHandler<ExperienceDeleteCommand, CommandJsonResponse>
         {
             readonly PortfolioDbContext db;
-            public ProjectDeleteCommandHandler(PortfolioDbContext db)
+            public ExperienceDeleteCommandHandler(PortfolioDbContext db)
             {
                 this.db = db;
             }
 
-            public async Task<CommandJsonResponse> Handle(ProjectDeleteCommand request, CancellationToken cancellationToken)
+            public async Task<CommandJsonResponse> Handle(ExperienceDeleteCommand request, CancellationToken cancellationToken)
             {
 
                 var response = new CommandJsonResponse();
@@ -30,7 +30,7 @@ namespace Riode.Application.Modules.ProjectModules.Admin
                     goto end;
                 }
 
-                var entity = await db.Projects.FirstOrDefaultAsync(b => b.Id == request.Id && b.DeleteByUserId == null);
+                var entity = await db.Experiences.FirstOrDefaultAsync(b => b.Id == request.Id && b.DeleteByUserId == null);
 
                 if (entity == null)
                 {

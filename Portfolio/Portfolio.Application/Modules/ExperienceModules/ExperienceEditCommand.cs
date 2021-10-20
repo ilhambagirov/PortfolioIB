@@ -11,20 +11,20 @@ using System.Threading.Tasks;
 
 namespace Portfolio.Application.Modules.ProjectModules.Admin
 {
-    public class ProjectEditCommand : ProjectViewModel, IRequest<int>
+    public class ExperienceEditCommand : ExperienceViewModel, IRequest<int>
     {
-        public class ProjectEditCommandHandler : IRequestHandler<ProjectEditCommand, int>
+        public class ExperienceEditCommandHandler : IRequestHandler<ExperienceEditCommand, int>
         {
             readonly PortfolioDbContext db;
             readonly IActionContextAccessor ctx;
             readonly IHostEnvironment env;
-            public ProjectEditCommandHandler(PortfolioDbContext db, IActionContextAccessor ctx, IHostEnvironment env)
+            public ExperienceEditCommandHandler(PortfolioDbContext db, IActionContextAccessor ctx, IHostEnvironment env)
             {
                 this.db = db;
                 this.ctx = ctx;
                 this.env = env;
             }
-            public async Task<int> Handle(ProjectEditCommand request, CancellationToken cancellationToken)
+            public async Task<int> Handle(ExperienceEditCommand request, CancellationToken cancellationToken)
             {
 
                 if (request.Id == null || request.Id < 0)
@@ -37,7 +37,7 @@ namespace Portfolio.Application.Modules.ProjectModules.Admin
                     ctx.ActionContext.ModelState.AddModelError("file", "Not Chosen");
                 }
 
-                var entity = await db.Projects.FirstOrDefaultAsync(b => b.Id == request.Id && b.DeleteByUserId == null);
+                var entity = await db.Experiences.FirstOrDefaultAsync(b => b.Id == request.Id && b.DeleteByUserId == null);
 
                 if (entity == null)
                 {
@@ -46,10 +46,11 @@ namespace Portfolio.Application.Modules.ProjectModules.Admin
 
                 if (ctx.IsModelStateValid())
                 {
-                    entity.ProjectName = request.ProjectName;
-                    entity.ProjectType = request.ProjectType;
+                    entity.CompanyName = request.CompanyName;
+                    entity.Occupation = request.Occupation;
+                    entity.Location = request.Location;
+                    entity.TimeInterval = request.TimeInterval;
                     entity.Description = request.Description;
-                    entity.Link = request.Link;
 
                     if (request.File != null)
                     {
@@ -66,15 +67,15 @@ namespace Portfolio.Application.Modules.ProjectModules.Admin
                             await request.File.CopyToAsync(stream);
                         }
 
-                        if (!string.IsNullOrEmpty(entity.ImagePath))
+                        if (!string.IsNullOrEmpty(entity.Logo))
                         {
                             System.IO.File.Delete(Path.Combine(env.ContentRootPath,
                                                        "wwwroot",
                                                        "uploads",
                                                        "images",
-                                                       entity.ImagePath));
+                                                       entity.Logo));
                         }
-                        entity.ImagePath = request.fileTemp;
+                        entity.Logo = request.fileTemp;
                     }
                     await db.SaveChangesAsync(cancellationToken);
                     return entity.Id;

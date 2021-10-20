@@ -9,7 +9,7 @@ namespace Portfolio.Domain.Models.ViewModels
 {
     public class PagedViewModel<T>
              where T : class
-    {
+    { 
         const int maxPaginationButtonCount = 10;
 
         public IEnumerable<T> Items { get; set; }
@@ -59,7 +59,7 @@ namespace Portfolio.Domain.Models.ViewModels
             builder.Append("<ul class='pagination'>");
 
             if (CurrentIndex > 1)
-            {/*
+            {
                 var link = hasPaginationFunction
                     ? $"javascript:{paginateFunction}({CurrentIndex - 1},{PageSize})"
                     : urlHelper.Action(action, values: new
@@ -68,10 +68,10 @@ namespace Portfolio.Domain.Models.ViewModels
                         pagesize = PageSize,
                         area
                     });
-*/
-                /*  builder.Append($@"<li class='prev'>
+
+                builder.Append($@"<li class='prev'>
                                   <a href='{link}'><i class='fas fa-chevron-left'></i></a>
-                                  </li>");*/
+                                  </li>");
             }
             else
             {
@@ -102,7 +102,7 @@ namespace Portfolio.Domain.Models.ViewModels
                     continue;
                 }
 
-               /* var link = hasPaginationFunction
+                var link = hasPaginationFunction
                     ? $"javascript:{paginateFunction}({i},{PageSize})"
                     : urlHelper.Action(action, values: (
                         pageindex: i,
@@ -110,24 +110,24 @@ namespace Portfolio.Domain.Models.ViewModels
                         area
                     ));
 
-                builder.Append($"<li><a href='{link}'>{i}</a></li>");*/
+                builder.Append($"<li><a href='{link}'>{i}</a></li>");
 
             }
 
 
             if (CurrentIndex < MaxPageIndex)
             {
-                /* var link = hasPaginationFunction
-                     ? $"javascript:{paginateFunction}({CurrentIndex + 1},{PageSize})"
-                     : urlHelper.Action(action, values: (
-                         pageindex: CurrentIndex + 1,
-                         pagesize: PageSize,
-                         area
-                     ));*/
+                var link = hasPaginationFunction
+                    ? $"javascript:{paginateFunction}({CurrentIndex + 1},{PageSize})"
+                    : urlHelper.Action(action, values: (
+                        pageindex: CurrentIndex + 1,
+                        pagesize: PageSize,
+                        area
+                    ));
 
-                /* builder.Append($@"<li class='next'>
+                builder.Append($@"<li class='next'>
                                  <a href='{link}'><i class='fas fa-chevron-right'></i></a>
-                                 </li>");*/
+                                 </li>");
             }
             else
             {
