@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Portfolio.Application.Modules.BlogModules.BlogUser;
 using System;
@@ -16,13 +17,14 @@ namespace Portfolio.WebUI.Controllers
         {
             this.mediator = mediator;
         }
-
+        [AllowAnonymous]
         public async Task<IActionResult> Index(BlogPagedQuery query)
         {
             var response = await mediator.Send(query);
 
             return View(response);
         }
+        [AllowAnonymous]
         public async Task<IActionResult> Details(BlogSingleQuery query)
         {
             var response = await mediator.Send(query);

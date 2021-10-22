@@ -1,12 +1,14 @@
-﻿namespace Portfolio.Domain.Models.Entities
+﻿using Portfolio.Domain.Models.Entities.Membership;
+
+namespace Portfolio.Domain.Models.Entities
 {
     public class PersonalDetails : BaseEntity
     {
-        public string Name { get; set; }
+        public int PortfolioUserId { get; set; }
+        public virtual PortfolioUser PortfolioUser { get; set; }
         public string Location { get; set; }
         public string Degree { get; set; }
         public string Phone { get; set; }
-        public string Email { get; set; }
         public string Age { get; set; }
         public string Experience { get; set; }
         public string CareerLevel { get; set; }

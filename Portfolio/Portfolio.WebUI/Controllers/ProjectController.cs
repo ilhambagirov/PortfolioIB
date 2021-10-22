@@ -1,10 +1,12 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Portfolio.Application.Modules.ProjectModules.ProjectUser;
 using System.Threading.Tasks;
 
 namespace Portfolio.WebUI.Controllers
 {
+    [AllowAnonymous]
     public class ProjectController : Controller
     {
         readonly IMediator mediator;

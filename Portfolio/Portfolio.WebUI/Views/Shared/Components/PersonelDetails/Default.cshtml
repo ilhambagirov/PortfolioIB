@@ -8,9 +8,10 @@
         <!-- Professional Details -->
         <h5 class="tittle">Professional Details</h5>
         <img src="~/uploads/images/avatar.jpg" class="img-responsive" alt="">
+     
         <ul class="personal-info">
             <li>
-                <p> <span> Name</span> @Model.PersonalDetails.Name</p>
+                <p> <span> Name</span> @Model.PersonalDetails.PortfolioUser.UserName</p>
             </li>
             <li>
                 <p> <span> Age</span> @Model.PersonalDetails.Age</p>
@@ -34,7 +35,7 @@
                 <p> <span> FAX</span>@Model.PersonalDetails.Fax </p>
             </li>
             <li>
-                <p> <span> E-mail</span> <a href="#.">@Model.PersonalDetails.Email</a> </p>
+                <p> <span> E-mail</span> <a href="#.">@Model.PersonalDetails.PortfolioUser.Email</a> </p>
             </li>
             <li>
                 <p> <span> Website</span><a href="#."> @Model.PersonalDetails.Website </a></p>

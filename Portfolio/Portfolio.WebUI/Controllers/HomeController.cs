@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Portfolio.Application.Modules.ContactModules.ContactUser;
 using Portfolio.Application.Modules.IndexModules.IndexUser;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Portfolio.WebUI.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         readonly IMediator mediator;

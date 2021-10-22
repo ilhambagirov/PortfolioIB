@@ -25,7 +25,7 @@ namespace Portfolio.Application.Modules.IndexModules.IndexUser
                      .ToListAsync(cancellationToken);
                 vm.Services = await db.Services.Where(b => b.DeleteByUserId == null && b.DeleteDate == null).Include(i => i.Icons)
                      .ToListAsync(cancellationToken);
-                vm.PersonalDetails = await db.PersonalDetails.FirstOrDefaultAsync(b => b.DeleteByUserId == null && b.DeleteDate == null);
+                vm.PersonalDetails = await db.PersonalDetails.Include(p=>p.PortfolioUser).FirstOrDefaultAsync(b => b.DeleteByUserId == null && b.DeleteDate == null);
                 return vm;
             }
         }

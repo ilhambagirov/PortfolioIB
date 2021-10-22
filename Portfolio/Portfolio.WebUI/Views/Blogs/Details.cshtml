@@ -93,24 +93,18 @@
                     </div>
                     <form>
                         <ul class="row">
-                            <li class="col-sm-4">
-                                <label>
-                                    *NAME
-                                    <input class="form-control" type="text" placeholder="">
-                                </label>
-                            </li>
-                            <li class="col-sm-4">
-                                <label>
-                                    *EMAIL ADDRESS
-                                    <input class="form-control" type="text" placeholder="">
-                                </label>
-                            </li>
-                            <li class="col-sm-12">
-                                <textarea placeholder="YOUR MESSAGE"></textarea>
-                            </li>
-                            <li class="col-sm-12">
-                                <button type="submit" class="btn btn-dark">POST COMMENT </button>
-                            </li>
+                            @if (!User.Identity.IsAuthenticated)
+                            {
+                                <li class="col-sm-12">
+                                    <textarea id="signinplease" placeholder="YOUR MESSAGE"></textarea>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="col-sm-12">
+                                    <textarea placeholder="YOUR MESSAGE"></textarea>
+                                </li>
+                            }
                         </ul>
                     </form>
                 </div>
@@ -120,4 +114,15 @@
         </article>
     </div>
 </div>
+
+@section addjs{
+    <script>
+        $(document).ready(function () {
+            $('#signinplease').focus(function (e) {
+                console.log(e.currentTarget)
+                setTimeout("window.location.pathname = \"account/signin\";", 0);
+            })
+        })
+    </script>
+}
 

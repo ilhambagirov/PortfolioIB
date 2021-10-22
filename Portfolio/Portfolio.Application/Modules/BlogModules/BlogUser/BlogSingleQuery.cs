@@ -1,18 +1,13 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Portfolio.Application.Modules.ProjectModules.ProjectUser;
 using Portfolio.Domain.Models.DataContext;
 using Portfolio.Domain.Models.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Portfolio.Application.Modules.BlogModules.BlogUser
 {
-    
+
     public class BlogSingleQuery : IRequest<Blog>
     {
         public int Id { get; set; }
@@ -32,6 +27,7 @@ namespace Portfolio.Application.Modules.BlogModules.BlogUser
                 }
 
                 var project = await db.Blogs
+                    .Include(b=>b.CreatedByUser)
                .FirstOrDefaultAsync(m => m.Id == request.Id, cancellationToken);
 
                 return project;

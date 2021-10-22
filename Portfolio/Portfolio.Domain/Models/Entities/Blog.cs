@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Portfolio.Domain.Models.Entities.Membership;
+using System.ComponentModel.DataAnnotations;
 
 namespace Portfolio.Domain.Models.Entities
 {
@@ -6,6 +7,7 @@ namespace Portfolio.Domain.Models.Entities
     {
         [Required]
         public string ImagePath { get; set; }
+        public virtual PortfolioUser CreatedByUser { get; set; }
         [Required]
         public string BlogName{ get; set; }
         public string Description { get; set; }
