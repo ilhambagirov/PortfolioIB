@@ -75,14 +75,14 @@ namespace Portfolio.WebUI.Controllers
                     return View(model);
                 }
 
-              /*  var redirectUrl = Request.Query["ReturnUrl"];
+                var redirectUrl = Request.Query["ReturnUrl"];
 
                 if (!string.IsNullOrWhiteSpace(redirectUrl))
                 {
                     return Redirect(redirectUrl);
-                }*/
+                }
 
-                return RedirectToAction("index", "Home");
+                return RedirectToAction("index", "blogs");
             }
             ViewBag.Message = "Fill the required fields!";
             return View(model);

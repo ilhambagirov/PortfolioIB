@@ -26,11 +26,16 @@ namespace Portfolio.Application.Modules.BlogModules.BlogUser
                     return null;
                 }
 
-                var project = await db.Blogs
-                    .Include(b=>b.CreatedByUser)
+                var blog = await db.Blogs
+                    .Include(b => b.CreatedByUser)
+                    .Include(c => c.BlogComments)
+                    .ThenInclude(c => c.CreatedByUser)
+
+                    .Include(c => c.BlogComments)
+                    .ThenInclude(c => c.Children)
                .FirstOrDefaultAsync(m => m.Id == request.Id, cancellationToken);
 
-                return project;
+                return blog;
             }
         }
 

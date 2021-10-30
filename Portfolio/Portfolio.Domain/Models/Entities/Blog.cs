@@ -1,4 +1,4 @@
-﻿using Portfolio.Domain.Models.Entities.Membership;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Portfolio.Domain.Models.Entities
@@ -7,7 +7,6 @@ namespace Portfolio.Domain.Models.Entities
     {
         [Required]
         public string ImagePath { get; set; }
-        public virtual PortfolioUser CreatedByUser { get; set; }
         [Required]
         public string BlogName{ get; set; }
         public string Description { get; set; }
@@ -15,5 +14,6 @@ namespace Portfolio.Domain.Models.Entities
         public string ShortDescription { get; set; }
         [Required]
         public string BlogType { get; set; }
+        public virtual ICollection<BlogComment> BlogComments { get; set; }
     }
 }

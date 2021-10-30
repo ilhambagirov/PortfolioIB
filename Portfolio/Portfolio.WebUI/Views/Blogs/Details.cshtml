@@ -1,6 +1,19 @@
 ﻿@model Blog
 @{
     ViewData["Title"] = "Details";
+
+    IEnumerable<BlogComment> GetComments(BlogComment parent)
+    {
+        if (parent.ParentId!=null)
+        {
+            yield return parent;
+        }
+
+        foreach (var comment in parent.Children.SelectMany(c=>GetComments(c)))
+        {
+            yield return comment;
+        }
+    }
 }
 
 <div class="tab-content">
@@ -17,7 +30,7 @@
 
             <!-- BLOG DETAIL -->
             <h4 class="font-normal">@Model.BlogName</h4>
-            <span class="post-bt">by <span class="text-color-primary">Ilham</span></span>
+            <span class="post-bt">by <span class="text-color-primary">@Model.CreatedByUser.UserName</span></span>
             <ul class="post-info">
                 @*<li> <i class="fa fa-comments-o"></i>97 </li>
                     <li> <i class="fa fa-eye"></i>565 </li>*@
@@ -46,45 +59,46 @@
                 <ul>
 
                     <!-- Comments -->
-                    <li class="margin-bottom-30">
-                        <div class="media">
-                            <div class="media-left">
-                                <div class="avatar"><img src="~/uploads/images/avatar-1.jpg" alt=""></div>
-                            </div>
-                            <div class="media-body">
-                                <div class="a-com">
-                                    <span class="a-name text-color-primary">JAMMIE LANDING </span><span class="date">24.03.2015 at 10:21</span>
-                                    <p class="margin-top-20">
-                                        “Quando feugait duo ei, te erant corpora interpretaris eos. Illud accommodare vituperatoribus an mea. Erat mazim animal
-                                        at nam, eam te doctus evertitur, sed decore ornatus”
-                                    </p>
-                                    <a href="#." class="text-right"> REPLAY <i class="fa fa-reply"></i></a>
+                    @foreach (var item in Model.BlogComments.Where(c => c.ParentId == null))
+                    {
+                        <li class="margin-bottom-30">
+                            <div class="media">
+                                <div class="media-left">
+                                    <div class="avatar"><img src="~/uploads/images/avatar-1.jpg" alt=""></div>
+                                </div>
+                                <div class="media-body">
+                                    <div class="a-com">
+                                        <span class="a-name text-color-primary"><b>@item.CreatedByUser?.UserName</b> </span><span class="date">@item.CreatedDate.ToString("dd MMM")</span>
+                                        <p class="margin-top-20">
+                                            @item.Comment
+                                        </p>
+                                        <a href="#." class="text-right"> REPLAY <i class="fa fa-reply"></i></a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </li>
-
-                    <!-- Comments Replay -->
-                    <li class="com-reply">
-                        <div class="media">
-                            <div class="media-left">
-                                <div class="avatar"><img src="~/uploads/images/avatar-2.jpg" alt=""></div>
-                            </div>
-                            <div class="media-body">
-                                <div class="a-com">
-                                    <span class="a-name ">JAMMIE LANDING </span><span class="date">24.03.2015 at 10:21</span>
-                                    <p class="margin-top-20">
-                                        “Quando feugait duo ei, te erant corpora interpretaris eos. Illud accommodare vituperatoribus an mea. Erat mazim animal
-                                        at nam, eam te doctus evertitur, sed decore ornatus”
-                                    </p>
-                                    <a href="#." class="text-right"> REPLAY <i class="fa fa-reply"></i></a>
+                        </li>
+                        @foreach (var subitem in GetComments(item))
+                        {
+                            <li class="com-reply">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <div class="avatar"><img src="~/uploads/images/avatar-2.jpg" alt=""></div>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="a-com">
+                                            <span class="a-name ">@subitem.CreatedByUser.UserName </span><span class="date">@subitem.CreatedDate.ToString("dd MMM")</span>
+                                            <p class="margin-top-20">
+                                               @subitem.Comment
+                                            </p>
+                                           @* <a href="#." class="text-right"> REPLAY <i class="fa fa-reply"></i></a>*@
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </li>
+                            </li>
+                        }
+                    }
                     <li class="text-center more-comments"><a href="#.">MORE COMMENT <i class="fa fa-angle-down"></i></a></li>
                 </ul>
-
                 <!-- Comments Form -->
                 <div class="comment-form">
                     <!-- Main Heading -->
@@ -109,8 +123,6 @@
                     </form>
                 </div>
             </div>
-
-
         </article>
     </div>
 </div>
@@ -120,7 +132,7 @@
         $(document).ready(function () {
             $('#signinplease').focus(function (e) {
                 console.log(e.currentTarget)
-                setTimeout("window.location.pathname = \"account/signin\";", 0);
+                setTimeout("window.location.pathname = \"signin.html\";", 0);
             })
         })
     </script>
