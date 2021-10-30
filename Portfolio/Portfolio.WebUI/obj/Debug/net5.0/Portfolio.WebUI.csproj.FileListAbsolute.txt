@@ -186,3 +186,4 @@ C:\Users\ACER\OneDrive\Desktop\Portfolio Project\PortfolioIB\Portfolio\Portfolio
 C:\Users\ACER\OneDrive\Desktop\Portfolio Project\PortfolioIB\Portfolio\Portfolio.WebUI\obj\Debug\net5.0\Razor\Views\Account\EmailConfrimationNotice.cshtml.g.cs
 C:\Users\ACER\OneDrive\Desktop\Portfolio Project\PortfolioIB\Portfolio\Portfolio.WebUI\obj\Debug\net5.0\Razor\Views\Account\RegisterConfirm.cshtml.g.cs
 C:\Users\ACER\OneDrive\Desktop\Portfolio Project\PortfolioIB\Portfolio\Portfolio.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Account\Login.cshtml.g.cs
+C:\Users\ACER\OneDrive\Desktop\Portfolio Project\PortfolioIB\Portfolio\Portfolio.WebUI\obj\Debug\net5.0\Razor\Views\Blogs\_Comment.cshtml.g.cs

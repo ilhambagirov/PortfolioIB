@@ -4,12 +4,12 @@
 
     IEnumerable<BlogComment> GetComments(BlogComment parent)
     {
-        if (parent.ParentId!=null)
+        if (parent.ParentId != null)
         {
             yield return parent;
         }
 
-        foreach (var comment in parent.Children.SelectMany(c=>GetComments(c)))
+        foreach (var comment in parent.Children.SelectMany(c => GetComments(c)))
         {
             yield return comment;
         }
@@ -51,7 +51,14 @@
 
 
             <div class="comments">
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <p>Please sign in for posting comments</p>
+                }
+                else
+                {
 
+                }
                 <!-- Main Heading -->
                 <div class="heading-side-bar margin-bottom-50 margin-top-100">
                     <h4>Comment (37)</h4>
@@ -61,7 +68,7 @@
                     <!-- Comments -->
                     @foreach (var item in Model.BlogComments.Where(c => c.ParentId == null))
                     {
-                        <li class="margin-bottom-30">
+                        <li class="comment margin-bottom-30" id="c-@item.Id" data-user-id="@item.Id">
                             <div class="media">
                                 <div class="media-left">
                                     <div class="avatar"><img src="~/uploads/images/avatar-1.jpg" alt=""></div>
@@ -72,14 +79,14 @@
                                         <p class="margin-top-20">
                                             @item.Comment
                                         </p>
-                                        <a href="#." class="text-right"> REPLAY <i class="fa fa-reply"></i></a>
+                                        <a class="btn btn-link text-right btn-reply"> REPLY <i class="fa fa-reply"></i></a>
                                     </div>
                                 </div>
                             </div>
                         </li>
                         @foreach (var subitem in GetComments(item))
                         {
-                            <li class="com-reply">
+                            <li class="comment com-reply" id="c-@subitem.Id" data-user-id="@subitem.Id">
                                 <div class="media">
                                     <div class="media-left">
                                         <div class="avatar"><img src="~/uploads/images/avatar-2.jpg" alt=""></div>
@@ -88,44 +95,71 @@
                                         <div class="a-com">
                                             <span class="a-name ">@subitem.CreatedByUser.UserName </span><span class="date">@subitem.CreatedDate.ToString("dd MMM")</span>
                                             <p class="margin-top-20">
-                                               @subitem.Comment
+                                                @@@subitem.Parent.CreatedByUser.UserName  @subitem.Comment
                                             </p>
-                                           @* <a href="#." class="text-right"> REPLAY <i class="fa fa-reply"></i></a>*@
+                                            @*<a class="btn btn-link text-right btn-reply"> REPLY <i class="fa fa-reply"></i></a>*@
                                         </div>
                                     </div>
                                 </div>
                             </li>
                         }
                     }
-                    <li class="text-center more-comments"><a href="#.">MORE COMMENT <i class="fa fa-angle-down"></i></a></li>
+                    @* <li class="text-center more-comments"><a href="#.">MORE COMMENT <i class="fa fa-angle-down"></i></a></li>*@
                 </ul>
                 <!-- Comments Form -->
                 <div class="comment-form">
                     <!-- Main Heading -->
-                    <div class="heading-side-bar margin-bottom-50 margin-top-80">
-                        <h4>Post to Reply</h4>
-                    </div>
-                    <form>
-                        <ul class="row">
-                            @if (!User.Identity.IsAuthenticated)
-                            {
-                                <li class="col-sm-12">
-                                    <textarea id="signinplease" placeholder="YOUR MESSAGE"></textarea>
-                                </li>
-                            }
-                            else
-                            {
-                                <li class="col-sm-12">
-                                    <textarea placeholder="YOUR MESSAGE"></textarea>
-                                </li>
-                            }
-                        </ul>
+
+                    <form method="post" id="postcomment">
+                        <div id="replytocomment">
+                        </div>
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <textarea id="signinplease" placeholder="YOUR MESSAGE"></textarea>
+                        }
+                        else
+                        {
+                            <input type="hidden" name="postId" value="@Model.Id" />
+                            <textarea name="comment"
+                                      placeholder="YOUR MESSAGE"></textarea>
+
+                        }
+                        <button type="submit" class="btn btn-dark">POST COMMENT </button>
                     </form>
                 </div>
             </div>
         </article>
     </div>
 </div>
+
+@section addcss{
+    <style>
+        #replytocomment:not(:empty) {
+            border: 1px solid #e1e1e1;
+            max-width: 100%;
+            color: #999;
+            padding: 20px 20px;
+            position: relative;
+        }
+
+        #replytocomment .comment {
+            margin: 0 !important;
+        }
+
+        #replytocomment .btn-reply {
+            display: none;
+        }
+
+        #replytocomment .close-comment {
+            color: red !important;
+            position: absolute;
+            font-size: 3.2rem !important;
+            top: -7px;
+            right: -2px;
+            max-width: 20px;
+        }
+    </style>
+}
 
 @section addjs{
     <script>
@@ -134,7 +168,58 @@
                 console.log(e.currentTarget)
                 setTimeout("window.location.pathname = \"signin.html\";", 0);
             })
+
+            $('#postcomment').submit(function (e) {
+                e.preventDefault();
+
+                var formData = new FormData(e.currentTarget);
+
+                var touserid = $('#replytocomment li').data("userId");
+
+                if (touserid != undefined) {
+                    formData.set("userId",touserid)
+                }
+
+                $.ajax({
+                    url: '@Url.Action("Comment")',
+                    type:'Post',
+                    contentType: false,
+                    processData: false,
+                    data: formData,
+                    dataType:'json',
+                    success: function (response) {
+                        if (response.error == true) {
+                            console.log("okaydir")
+                        }
+
+                    },
+                    error: function (response) {
+                        if (response.statusText ==='parsererror') {
+                            if (touserid != undefined) {
+                                $(response.responseText).insertAfter(`#c-${touserid}`);
+                                $('#replytocomment').html('');
+                                e.currentTarget.reset();
+                            }
+                            else {
+                                $('div.comments ul').append($(response.responseText))
+                            }
+                        }
+                    }
+
+                }
+                )
+            })
+
+            $('.btn-reply').click(function (e) {
+                e.preventDefault();
+
+                $('#replytocomment').html('<a class="close-comment" href="javascript:close()">&times;</a>').append($(e.currentTarget).closest('.comment').clone())
+            })
         })
+
+        function close() {
+            $('#replytocomment').html('')
+        }
     </script>
 }
 

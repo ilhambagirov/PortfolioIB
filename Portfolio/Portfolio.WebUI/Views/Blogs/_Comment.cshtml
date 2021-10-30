@@ -1,0 +1,41 @@
+﻿@model BlogComment
+
+@if (Model.ParentId == null)
+{
+    <li class="comment margin-bottom-30" id="c-@Model.Id" data-user-id="@Model.Id">
+        <div class="media">
+            <div class="media-left">
+                <div class="avatar"><img src="~/uploads/images/avatar-1.jpg" alt=""></div>
+            </div>
+            <div class="media-body">
+                <div class="a-com">
+                    <span class="a-name text-color-primary"><b>@Model.CreatedByUser?.UserName</b> </span><span class="date">@Model.CreatedDate.ToString("dd MMM")</span>
+                    <p class="margin-top-20">
+                        @Model.Comment
+                    </p>
+                    <a class="btn btn-link text-right btn-reply"> REPLY <i class="fa fa-reply"></i></a>
+                </div>
+            </div>
+        </div>
+    </li>
+}
+else
+{
+<li class="comment com-reply" id="c-@Model.Id" data-user-id="@Model.Id">
+    <div class="media">
+        <div class="media-left">
+            <div class="avatar"><img src="~/uploads/images/avatar-2.jpg" alt=""></div>
+        </div>
+        <div class="media-body">
+            <div class="a-com">
+                <span class="a-name ">@Model.CreatedByUser.UserName </span><span class="date">@Model.CreatedDate.ToString("dd MMM")</span>
+                <p class="margin-top-20">
+                   @Model.Comment
+                </p>
+                @*<a class="btn btn-link text-right btn-reply"> REPLY <i class="fa fa-reply"></i></a>*@
+            </div>
+        </div>
+    </div>
+</li>
+}
+
